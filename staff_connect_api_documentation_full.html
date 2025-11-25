@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>StaffConnect — Full API Documentation & Structure</title>
+  <style>
+    body{font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:#f8fafc;color:#0f172a;margin:0;padding:24px}
+    .container{max-width:1100px;margin:0 auto;background:#fff;padding:28px;border-radius:10px;box-shadow:0 6px 24px rgba(15,23,42,0.06)}
+    h1{font-size:22px;margin-bottom:6px}
+    h2{font-size:18px;margin-top:18px}
+    h3{font-size:16px;margin-top:14px}
+    p{margin:8px 0}
+    pre{background:#0f172a;color:#e6f2ff;padding:12px;border-radius:6px;overflow:auto}
+    table{width:100%;border-collapse:collapse;margin-top:8px}
+    th,td{padding:8px;border:1px solid #e6edf3;text-align:left;vertical-align:top}
+    th{background:#f1f5f9}
+    code{background:#f1f5f9;padding:2px 6px;border-radius:4px}
+    .note{font-size:13px;color:#475569}
+    a.filelink{display:inline-block;margin-top:8px;color:#0b5fff}
+    footer{margin-top:18px;font-size:13px;color:#475569}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>StaffConnect — Full API Documentation & Structure</h1>
+    <p>This document contains:
+      <ol>
+        <li>API Endpoints Documentation (Readable)</li>
+        <li>Laravel API Folder Structure</li>
+        <li>OpenAPI/Swagger-style specification for the most important endpoints</li>
+      </ol>
+    </p>
+
+    <h2>Reference Upload (for design/wireframes)</h2>
+    <p>If you need to reference the signup/dashboard images used in the planning, open the uploaded file here:</p>
+    <a class="filelink" href="/mnt/data/d439cd3a-73cf-4d28-b361-8f412f853841.png" target="_blank">/mnt/data/d439cd3a-73cf-4d28-b361-8f412f853841.png</a>
+
+    <h2>1. API Endpoints Documentation (Readable)</h2>
+    <p>All endpoints are namespaced under <code>/api</code> and use Bearer tokens (Laravel Sanctum) for authenticated routes.</p>
+
+    <h3>Auth</h3>
+    <table>
+      <tr><th>Endpoint</th><th>Method</th><th>Description</th></tr>
+      <tr><td><code>/auth/register</code></td><td>POST</td><td>Register a Business or Worker. Payload includes role & industry. Returns user + token.</td></tr>
+      <tr><td><code>/auth/login</code></td><td>POST</td><td>Login — returns token.</td></tr>
+      <tr><td><code>/auth/me</code></td><td>GET</td><td>Get current authenticated user profile.</td></tr>
+      <tr><td><code>/auth/logout</code></td><td>POST</td><td>Invalidate token / logout.</td></tr>
+    </table>
+
+    <h3>Users & Profiles</h3>
+    <table>
+      <tr><th>Endpoint</th><th>Method</th><th>Notes</th></tr>
+      <tr><td><code>/users/{id}</code></td><td>GET, PUT</td><td>Read / update profile (Business or Worker).</td></tr>
+      <tr><td><code>/workers/{id}/verification</code></td><td>POST</td><td>Upload verification documents for worker.</td></tr>
+      <tr><td><code>/businesses/{id}/verification</code></td><td>POST</td><td>Upload verification documents for business.</td></tr>
+    </table>
+
+    <h3>Jobs / Shifts</h3>
+    <table>
+      <tr><th>Endpoint</th><th>Method</th><th>Notes</th></tr>
+      <tr><td><code>/jobs</code></td><td>POST</td><td>Create job/shift (business). Include postcode, lat, lng, radius, slots, industry_id.</td></tr>
+      <tr><td><code>/jobs</code></td><td>GET</td><td>List jobs. Query params: <code>nearby=true&lat=&lng=&radius=&role=&industry=&status=</code>.</td></tr>
+      <tr><td><code>/jobs/{id}</code></td><td>GET, PUT, DELETE</td><td>Get / update / delete job.</td></tr>
+      <tr><td><code>/jobs/{id}/applications</code></td><td>GET</td><td>Get applicants for a job.</td></tr>
+    </table>
+
+    <h3>Applications</h3>
+    <table>
+      <tr><th>Endpoint</th><th>Method</th><th>Notes</th></tr>
+      <tr><td><code>/jobs/{id}/apply</code></td><td>POST</td><td>Worker applies for job — optional cover_note.</td></tr>
+      <tr><td><code>/applications/{id}</code></td><td>GET, PUT</td><td>View application, update status (selected/rejected).</td></tr>
+      <tr><td><code>/applications/mine</code></td><td>GET</td><td>Worker's applications.</td></tr>
+    </table>
+
+    <h3>Timesheets</h3>
+    <table>
+      <tr><th>Endpoint</th><th>Method</th><th>Notes</th></tr>
+      <tr><td><code>/timesheets</code></td><td>POST</td><td>Submit timesheet for job (start_time, end_time, hours).</td></tr>
+      <tr><td><code>/timesheets/{id}/approve</code></td><td>PUT</td><td>Business approves timesheet (or admin overrides).</td></tr>
+      <tr><td><code>/timesheets/{id}/reject</code></td><td>PUT</td><td>Reject with reason.</td></tr>
+      <tr><td><code>/timesheets/{id}</code></td><td>GET</td><td>View details and history.</td></tr>
+    </table>
+
+    <h3>Payments</h3>
+    <table>
+      <tr><th>Endpoint</th><th>Method</th><th>Notes</th></tr>
+      <tr><td><code>/payments/payout</code></td><td>POST</td><td>Trigger payout to worker (admin/business trigger depending on flow).</td></tr>
+      <tr><td><code>/payments/history</code></td><td>GET</td><td>Payment history for user.</td></tr>
+      <tr><td><code>/stripe/webhook</code></td><td>POST</td><td>Stripe webhook endpoint for charge/payout events.</td></tr>
+    </table>
+
+    <h3>Notifications</h3>
+    <table>
+      <tr><th>Endpoint</th><th>Method</th><th>Notes</th></tr>
+      <tr><td><code>/notifications</code></td><td>GET</td><td>List notifications for user.</td></tr>
+      <tr><td><code>/notifications/{id}/read</code></td><td>PUT</td><td>Mark as read.</td></tr>
+      <tr><td><code>/notifications/token</code></td><td>POST</td><td>Register device token for push notifications.</td></tr>
+    </table>
+
+    <h3>Admin APIs</h3>
+    <table>
+      <tr><th>Endpoint</th><th>Method</th><th>Notes</th></tr>
+      <tr><td><code>/admin/users</code></td><td>GET</td><td>List users (filters: role, verified, status).</td></tr>
+      <tr><td><code>/admin/jobs</code></td><td>GET</td><td>Monitor jobs (force close, reassign).</td></tr>
+      <tr><td><code>/admin/timesheets</code></td><td>GET</td><td>List timesheets for review and dispute handling.</td></tr>
+      <tr><td><code>/admin/payouts</code></td><td>POST, GET</td><td>Trigger manual payouts, view payout schedule and failures.</td></tr>
+      <tr><td><code>/admin/settings</code></td><td>GET, PUT</td><td>Platform-wide settings: fees, payout cycles, verification requirements.</td></tr>
+      <tr><td><code>/admin/reports</code></td><td>GET</td><td>Financial and operational reports (CSV/PDF export).</td></tr>
+    </table>
+
+    <h2>2. Laravel API Folder Structure (Detailed)</h2>
+    <p>Recommended Laravel structure tailored for the StaffConnect API.</p>
+    <pre>
+laravel-backend/
+├── app/
+│   ├── Models/
+│   │   └── (User, Business, WorkerProfile, Job, Application, Timesheet, Payment, Industry, Skill, Document)
+│   ├── Http/
+│   │   ├── Controllers/
+│   │   │   ├── AuthController.php
+│   │   │   ├── JobController.php
+│   │   │   ├── ApplicationController.php
+│   │   │   ├── TimesheetController.php
+│   │   │   ├── PaymentController.php
+│   │   │   └── Admin/*
+│   │   └── Requests/ (FormRequests for validation)
+│   ├── Services/ (PaymentService, NotificationService, GeoLocationService)
+│   ├── Repositories/ (optional, for complex queries)
+│   ├── Policies/ (authorization)
+│   └── Notifications/
+├── database/
+│   ├── migrations/
+│   ├── seeders/
+│   └── factories/
+├── routes/
+│   ├── api.php
+│   ├── admin.php
+│   └── web.php
+├── config/
+├── resources/
+└── tests/
+    </pre>
+
+    <h2>3. OpenAPI / Swagger-style Spec (Representative)</h2>
+    <p>Below is a compact OpenAPI-like representation for the most important endpoints. Use this as a template to expand into a full OpenAPI file.</p>
+
+    <pre>
+openapi: 3.0.0
+info:
+  title: StaffConnect API
+  version: 1.0.0
+servers:
+  - url: https://api.staffconnect.example.com
+paths:
+  /auth/login:
+    post:
+      summary: Login
+      requestBody:
+        application/json:
+          schema:
+            type: object
+            properties:
+              email: { type: string }
+              password: { type: string }
+      responses:
+        '200': { description: OK }
+  /auth/register:
+    post:
+      summary: Register user (business or worker)
+      requestBody:
+        application/json:
+          schema:
+            type: object
+            properties:
+              role: { type: string, enum: ["business","worker"] }
+              email: { type: string }
+              password: { type: string }
+              industry_id: { type: integer }
+      responses:
+        '201': { description: Created }
+  /jobs:
+    get:
+      summary: List jobs (supports nearby filtering)
+      parameters:
+        - in: query
+          name: nearby
+          schema: { type: boolean }
+        - in: query
+          name: lat
+          schema: { type: number }
+        - in: query
+          name: lng
+          schema: { type: number }
+        - in: query
+          name: radius
+          schema: { type: number }
+      responses:
+        '200': { description: OK }
+    post:
+      summary: Create job
+      security:
+        - bearerAuth: []
+      requestBody:
+        application/json:
+          schema:
+            type: object
+            properties:
+              business_id: { type: integer }
+              title: { type: string }
+              description: { type: string }
+              postcode: { type: string }
+              lat: { type: number }
+              lng: { type: number }
+              radius: { type: number }
+              start_time: { type: string, format: date-time }
+              end_time: { type: string, format: date-time }
+      responses:
+        '201': { description: Created }
+  /jobs/{id}/apply:
+    post:
+      summary: Apply for job
+      parameters:
+        - in: path
+          name: id
+          schema: { type: integer }
+      requestBody:
+        application/json:
+          schema:
+            type: object
+            properties:
+              cover_note: { type: string }
+      responses:
+        '201': { description: Created }
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    </pre>
+
+    <h2>Authorization & Errors</h2>
+    <ul>
+      <li>All protected routes return <code>401</code> for unauthenticated and <code>403</code> for forbidden.</li>
+      <li>Standard error response format: <code>{ "error": true, "message": "...", "code": 1001, "details": { } }</code></li>
+    </ul>
+
+    <h2>Pagination, Filtering & Sorting Conventions</h2>
+    <ul>
+      <li>Pagination via <code>page</code> and <code>per_page</code> query params. Responses include <code>meta</code> with <code>total</code>, <code>per_page</code>, <code>current_page</code>.</li>
+      <li>Filtering: use query params, e.g., <code>?status=open&industry=1</code>.</li>
+      <li>Sorting: use <code>sort_by</code> and <code>order=asc|desc</code>.</li>
+    </ul>
+
+    <h2>Versioning Strategy</h2>
+    <p>Use URI versioning for breaking changes: <code>/api/v1/...</code>. Non-breaking improvements can be added in-place with feature flags.</p>
+
+    <h2>Next Steps — Items I can generate for you</h2>
+    <ul>
+      <li>Full OpenAPI (YAML/JSON) export for the entire API surface.</li>
+      <li>Laravel route file skeletons (api.php) with annotated controllers.</li>
+      <li>Postman collection export or Insomnia workspace.</li>
+      <li>Database schema for API models.</li>
+    </ul>
+
+    <footer>
+      <p class="note">Prepared for: <strong>StaffConnect</strong>. Let me know which of the "Next Steps" you want me to generate first — I can produce the full OpenAPI YAML next if you choose.</p>
+    </footer>
+  </div>
+</body>
+</html>
