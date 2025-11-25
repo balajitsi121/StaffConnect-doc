@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>StaffConnect — Website & Mobile App Documentation</title>
+  <style>
+    body{font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:#f8fafc;color:#0f172a;margin:0;padding:24px}
+    .container{max-width:1100px;margin:0 auto;background:#fff;padding:28px;border-radius:10px;box-shadow:0 6px 24px rgba(15,23,42,0.06)}
+    h1{font-size:22px;margin:0 0 8px}
+    h2{font-size:18px;margin-top:18px}
+    h3{font-size:16px;margin-top:14px}
+    p{margin:8px 0}
+    pre{background:#f1f5f9;padding:12px;border-radius:6px;overflow:auto}
+    ul{margin-left:20px}
+    table{width:100%;border-collapse:collapse;margin-top:12px}
+    th,td{padding:8px;border:1px solid #e6edf3;text-align:left;vertical-align:top}
+    th{background:#f1f5f9}
+    a.filelink{display:inline-block;margin-top:8px;color:#0b5fff}
+    footer{margin-top:18px;font-size:13px;color:#475569}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>StaffConnect — Website & Mobile App Documentation</h1>
+    <p><strong>Scope:</strong> Documentation covering both the public website (React / Next.js) and the mobile applications (React Native). Includes pages/screens, components, data flows, tech choices, folder structures, build & deployment notes, and QA/test recommendations.</p>
+
+    <h2>Reference Wireframes</h2>
+    <p>Design assets and wireframes (signup, dashboards) used during planning:</p>
+    <a class="filelink" href="/mnt/data/d439cd3a-73cf-4d28-b361-8f412f853841.png" target="_blank">/mnt/data/d439cd3a-73cf-4d28-b361-8f412f853841.png</a>
+
+    <h2>1. High-level Pages & Screens</h2>
+    <h3>Website (React / Next.js)</h3>
+    <ul>
+      <li>Landing / Marketing pages</li>
+      <li>Auth: Login / Register (Business / Worker)</li>
+      <li>Dashboard - Worker (Jobs feed, Applied, Accepted, Earnings)</li>
+      <li>Dashboard - Business (Post job, Applications, Timesheets, Payouts)</li>
+      <li>Jobs Listing & Search (filters: industry, role, postcode, radius)</li>
+      <li>Job Details & Apply</li>
+      <li>Profile & Documents (upload RTW, licenses)</li>
+      <li>Payments & Billing (view invoices, billing method)</li>
+      <li>Notifications center</li>
+      <li>Help / Support / Terms</li>
+    </ul>
+
+    <h3>Mobile App (React Native) — Worker & Business</h3>
+    <ul>
+      <li>Onboarding & Guided Profile Completion</li>
+      <li>Home Feed (Nearby Jobs) with map & list toggles</li>
+      <li>Job Details, Apply, Favourite</li>
+      <li>My Applications / My Jobs</li>
+      <li>Timesheet: Clock-in/Clock-out, Submit hours</li>
+      <li>Earnings & Payouts</li>
+      <li>Document upload (camera + gallery)</li>
+      <li>Push Notifications center</li>
+      <li>Settings & Support</li>
+    </ul>
+
+    <h2>2. Key Components</h2>
+    <ul>
+      <li><strong>JobCard</strong> — compact job preview (title, pay, distance, start time, apply CTA)</li>
+      <li><strong>Filters</strong> — role, industry, radius slider, date picker</li>
+      <li><strong>Profile Completeness</strong> — progress bar, status, required documents</li>
+      <li><strong>Timesheet Form</strong> — start/end, breaks, notes, evidence upload</li>
+      <li><strong>Map & List View</strong> — toggle for geolocation-based browsing</li>
+      <li><strong>Notifications</strong> — in-app list + push</li>
+    </ul>
+
+    <h2>3. Data Flow / State Management</h2>
+    <p><strong>Website:</strong> use React Context or Redux (small-to-medium) or Zustand for lightweight state. Data fetching via Axios + SWR/React Query for caching and revalidation.</p>
+    <p><strong>Mobile:</strong> Context + React Query for API caching. Keep ephemeral UI state local to components.</p>
+
+    <h2>4. Folder Structures</h2>
+    <h3>Website (Next.js)</h3>
+    <pre>
+web-frontend/
+├── public/
+├── src/
+│   ├── pages/
+│   │   ├── index.jsx
+│   │   ├── auth/login.jsx
+│   │   ├── auth/register.jsx
+│   │   ├── dashboard/worker.jsx
+│   │   └── dashboard/business.jsx
+│   ├── components/
+│   ├── layouts/
+│   ├── hooks/
+│   ├── services/ (api.js)
+│   └── styles/
+└── next.config.js
+    </pre>
+
+    <h3>Mobile App (React Native)</h3>
+    <pre>
+mobile-app/
+├── src/
+│   ├── screens/
+│   │   ├── Auth/
+│   │   ├── Worker/
+│   │   └── Business/
+│   ├── components/
+│   ├── navigation/
+│   ├── services/ (api, notifications, geo)
+│   ├── context/
+│   └── assets/
+├── android/
+├── ios/
+└── app.json
+    </pre>
+
+    <h2>5. Tech Stack & Libraries</h2>
+    <table>
+      <tr><th>Layer</th><th>Technology</th></tr>
+      <tr><td>Backend API</td><td>Laravel 10+, Sanctum, MySQL/Postgres, Redis</td></tr>
+      <tr><td>Website</td><td>React, Next.js, Tailwind CSS, React Query, Axios</td></tr>
+      <tr><td>Mobile</td><td>React Native, React Navigation, React Query, Notifee + FCM</td></tr>
+      <tr><td>Payments</td><td>Stripe Connect (initial), gateway-agnostic adapter</td></tr>
+      <tr><td>Storage</td><td>Amazon S3 (documents, images)</td></tr>
+    </table>
+
+    <h2>6. Important Functional Notes</h2>
+    <ul>
+      <li><strong>Geolocation & Radius Matching:</strong> Postcode → lat/lng on job creation and worker profile. Use Haversine for distance checks.</li>
+      <li><strong>Document Upload:</strong> Use client-side compression for images, upload to S3, and store signed URLs.</li>
+      <li><strong>Push Notifications:</strong> Register device tokens and send via NotificationService (queue worker).</li>
+      <li><strong>Offline / Resilience:</strong> Cache last job list on device and queue failed requests (timesheet) for retry.</li>
+    </ul>
+
+    <h2>7. Build & Release</h2>
+    <h3>Website</h3>
+    <ul>
+      <li>Deploy Next.js on Vercel or a managed host (Cloud Run, Netlify)</li>
+      <li>CI: GitHub Actions (build, tests, deploy)</li>
+    </ul>
+    <h3>Mobile</h3>
+    <ul>
+      <li>Use EAS/Expo or bare React Native with Fastlane for automated builds</li>
+      <li>Implement internal beta distribution (TestFlight, Google Play Internal)</li>
+      <li>Prepare App Store / Play Store metadata and assets</li>
+    </ul>
+
+    <h2>8. Testing & QA</h2>
+    <ul>
+      <li>Unit tests (Jest for RN & React, PHPUnit/Pest for Laravel)</li>
+      <li>Integration tests for APIs</li>
+      <li>End-to-end (Playwright/Cypress) for web flows</li>
+      <li>Manual device testing matrix for major Android/iOS versions</li>
+    </ul>
+
+    <h2>9. Deliverables</h2>
+    <ul>
+      <li>React website with worker & business dashboards</li>
+      <li>React Native mobile apps (iOS & Android)</li>
+      <li>Shared API client library (axios wrapper)
+      <li>Design components library (reusable JobCard, Filters, Forms)</li>
+      <li>Release-ready builds and CI/CD pipelines</li>
+    </ul>
+
+    <footer>
+      <p class="note">Prepared for: <strong>StaffConnect</strong>. If you'd like, I can export this as downloadable HTML/PDF, generate component-level props sheets, or produce the React/React Native component skeletons next.</p>
+    </footer>
+  </div>
+</body>
+</html>
