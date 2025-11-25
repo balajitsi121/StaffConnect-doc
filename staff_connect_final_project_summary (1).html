@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>StaffConnect — Final Project Summary</title>
+  <style>
+    body{font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:#0f172a;margin:0;padding:24px;background:#f8fafc}
+    .container{max-width:980px;margin:0 auto;background:#fff;padding:28px;border-radius:10px;box-shadow:0 6px 24px rgba(15,23,42,0.06)}
+    h1{margin:0 0 8px;font-size:22px}
+    h2{font-size:18px;margin-top:20px}
+    p{margin:8px 0}
+    ul{margin:8px 0 16px 20px}
+    code{background:#f1f5f9;padding:2px 6px;border-radius:4px;font-family:monospace}
+    .badge{display:inline-block;background:#e6f2ff;color:#0b4a8a;padding:6px 10px;border-radius:999px;font-size:12px;margin-right:8px}
+    .section{margin-top:18px}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    footer{margin-top:28px;font-size:13px;color:#475569}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>StaffConnect — Final Project Summary</h1>
+    <p><strong>Purpose:</strong> A future-proof, multi‑industry staffing marketplace that initially targets hotels & hospitality and is ready to expand to hospitals, events, logistics, and more.</p>
+
+    <h2>High-level System Overview</h2>
+    <ul>
+      <li><strong>Back-end API:</strong> Laravel (REST API). Single source of truth for business logic and data.</li>
+      <li><strong>Website:</strong> React (Next.js recommended for SEO & performance).</li>
+      <li><strong>Mobile Apps:</strong> React Native (iOS & Android).</li>
+      <li><strong>Admin Panel:</strong> Laravel (Blade or Inertia/React) for verification, payouts, and configuration.</li>
+      <li><strong>Payments:</strong> Stripe initially; gateway-agnostic design to add PayPal, bank transfers later.</li>
+    </ul>
+
+    <h2>Key Principles & Constraints</h2>
+    <ul>
+      <li>Design industry‑agnostic models: use <code>Business</code>, <code>Worker</code>, <code>Job/Shift</code>, <code>Industry</code>, and <code>Skill</code>.</li>
+      <li>Location-driven matching: postcode → lat/lng with radius-based filtering (Haversine formula).</li>
+      <li>Role-based and industry-based verification rules (pluggable configuration).</li>
+      <li>Single API consumed by web + mobile frontends for consistent business logic.</li>
+      <li>Modular services: payments, notifications, geo, document verification, and reporting are pluggable.</li>
+    </ul>
+
+    <h2>Core Features (Both Web & Mobile)</h2>
+    <div class="grid">
+      <div>
+        <h3>Workers</h3>
+        <ul>
+          <li>Register and upload verification documents</li>
+          <li>Search & apply for shifts by radius, role, and industry</li>
+          <li>Submit timesheets / clock-in-out (optional)</li>
+          <li>View earnings & payout history</li>
+          <li>Ratings & reviews, favourites, notifications</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Businesses</h3>
+        <ul>
+          <li>Post jobs/shifts with postcode & search radius</li>
+          <li>Receive applications, shortlist, and assign staff</li>
+          <li>Approve or adjust timesheets and trigger payouts</li>
+          <li>View reports, manage jobs, messaging (optional)</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>Backend Modules (Laravel)</h2>
+    <ul>
+      <li><code>Auth & Roles</code> (Sanctum) — Admin, Business, Worker</li>
+      <li><code>Industry & Skills</code> — dynamic lists and mappings</li>
+      <li><code>Jobs/Applications</code> — create, search, apply, assign</li>
+      <li><code>GeoLocation</code> — postcode lookup, lat/lng storage, radius search</li>
+      <li><code>Timesheets & Payouts</code> — approval workflow and payment orchestration</li>
+      <li><code>Documents & Verification</code> — configurable per industry</li>
+      <li><code>Payments Service</code> — Stripe (initial), gateway‑agnostic interface</li>
+      <li><code>Notifications Service</code> — push (FCM/Notifee), email, SMS</li>
+      <li><code>Reports & Admin</code> — revenue, payouts, activity, dispute handling</li>
+    </ul>
+
+    <h2>Project Folder & Logical Structure (High Level)</h2>
+
+<h3>Full Folder Architecture (Backend, Website, Mobile, Admin)</h3>
+<p>Below is the complete recommended folder structure for all systems, organized clearly and ready for development.</p>
+
+<h3>1. Backend – Laravel API</h3>
+<pre>
+laravel-backend/
+├── app/
+│   ├── Models/
+│   ├── Http/
+│   │   ├── Controllers/
+│   │   ├── Middleware/
+│   │   └── Requests/
+│   ├── Services/
+│   ├── Repositories/
+│   ├── Policies/
+│   └── Notifications/
+├── bootstrap/
+├── config/
+├── database/
+│   ├── migrations/
+│   ├── seeders/
+│   └── factories/
+├── routes/
+│   ├── api.php
+│   ├── web.php
+│   └── admin.php
+├── storage/
+├── tests/
+└── composer.json
+</pre>
+
+<h3>2. Website – React (Next.js Recommended)</h3>
+<pre>
+web-frontend/
+├── public/
+├── src/
+│   ├── pages/
+│   │   ├── auth/
+│   │   ├── dashboard/
+│   │   ├── jobs/
+│   │   └── profile/
+│   ├── components/
+│   ├── layouts/
+│   ├── hooks/
+│   ├── context/
+│   ├── services/
+│   ├── utils/
+│   └── styles/
+├── package.json
+└── next.config.js
+</pre>
+
+<h3>3. Mobile App – React Native</h3>
+<pre>
+mobile-app/
+├── src/
+│   ├── screens/
+│   ├── components/
+│   ├── navigation/
+│   ├── services/
+│   ├── context/
+│   ├── hooks/
+│   ├── utils/
+│   └── assets/
+├── android/
+├── ios/
+├── app.json
+└── package.json
+</pre>
+
+<h3>4. Admin Panel – Laravel (Blade or Inertia + React)</h3>
+<pre>
+admin-panel/
+├── app/
+│   ├── Http/
+│   ├── Models/
+│   └── Services/
+├── resources/
+│   ├── views/ (Blade) OR jsx/ (Inertia)
+│   ├── css/
+│   └── js/
+├── routes/
+│   └── admin.php
+└── public/
+</pre>
+    <div class="grid">
+      <div>
+        <h3>Backend (Laravel)</h3>
+        <ul>
+          <li><code>/app/Models</code> — User, Business, WorkerProfile, Job, Application, Timesheet, Payment, Industry, Skill, Document</li>
+          <li><code>/app/Services</code> — PaymentService, NotificationService, GeoLocationService, VerificationService</li>
+          <li><code>/routes/api.php</code> — public & authenticated API routes</li>
+          <li>Migrations, Queues (Redis), Jobs, Notifications</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Frontend (React / Next.js)</h3>
+        <ul>
+          <li><code>/pages</code> — login, register, dashboards, jobs, job-details, profile</li>
+          <li><code>/components</code> — JobCard, StatsCard, Navbar, Filters</li>
+          <li>API service layer (Axios), AuthContext, geo utils</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>Mobile App Structure (React Native)</h2>
+    <ul>
+      <li>Screens: Login, Register, WorkerDashboard, BusinessDashboard, JobList, JobDetails, Profile</li>
+      <li>Services: API client, notifications, geolocation</li>
+      <li>Use React Navigation, context/state management, and Notifee + FCM</li>
+    </ul>
+
+    <h2>API Endpoints (Representative)</h2>
+    <ul>
+      <li><code>POST /auth/register</code> — register business/worker</li>
+      <li><code>POST /auth/login</code> — login</li>
+      <li><code>GET /jobs?nearby=true</code> — radius + role + industry filtered list</li>
+      <li><code>POST /jobs</code> — create job (business)</li>
+      <li><code>POST /jobs/{id}/apply</code> — apply for a job</li>
+      <li><code>POST /timesheet</code> — submit hours</li>
+      <li><code>POST /payments/payout</code> — trigger payout</li>
+      <li><code>GET /admin/reports</code> — admin reports</li>
+    </ul>
+
+    <h2>Geo & Matching Details</h2>
+    <ul>
+      <li>Use postcode lookup service (UK: Postcodes.io or Google) to convert postcode → lat/lng.
+      <li>Store lat/lng on Job and Worker records.
+      <li>Filter using Haversine formula (SQL or application logic) to return jobs where distance ≤ job.radius.
+    </ul>
+
+    <h2>Payments & Payouts</h2>
+    <ul>
+      <li>Start with Stripe Connect for marketplace flows and platform fee handling.</li>
+      <li>Design payment service interface to add other gateways (PayPal, bank transfer) later.</li>
+      <li>Payout schedule configurable (weekly default), with manual overrides via admin.</li>
+    </ul>
+
+    <h2>Phased Development Roadmap</h2>
+    <ol>
+      <li><strong>Phase 1 — Foundation:</strong> Laravel API, auth, roles, industry model, postcode → lat/lng support.</li>
+      <li><strong>Phase 2 — Profiles & Verification:</strong> worker/business profile flows, document upload, admin verification.</li>
+      <li><strong>Phase 3 — Jobs & Matching:</strong> job CRUD, radius-based job feed, applications.</li>
+      <li><strong>Phase 4 — Timesheets & Payments:</strong> timesheet workflow, Stripe integration, payout orchestration.</li>
+      <li><strong>Phase 5 — Frontends:</strong> React website first (worker + business), then React Native apps.</li>
+      <li><strong>Phase 6 — Admin & Reporting:</strong> dashboard, dispute management, industry settings.</li>
+    </ol>
+
+    <h2>Operational Considerations</h2>
+    <ul>
+      <li>Use queues for emails, document processing, payout jobs, and notifications.
+      <li>Use caching (Redis) for frequently read lists (e.g., roles, skills, industry lists) and to rate-limit heavy queries.
+      <li>Store audit logs for timesheet edits and payout overrides for compliance.
+      <li>Prepare a data migration story to add future industries and verification types without schema breaking changes.
+    </ul>
+
+    <h2>Deliverables</h2>
+    <ul>
+      <li>Database schema (industry-agnostic)</li>
+      <li>API documentation (Swagger/OpenAPI)</li>
+      <li>React website with worker & business dashboards</li>
+      <li>React Native mobile apps (iOS/Android)</li>
+      <li>Admin panel for verification, payouts, and settings</li>
+      <li>Deployment & CI/CD plan</li>
+    </ul>
+
+    <footer>
+      <p>Prepared for: <strong>StaffConnect</strong> — Future-proof multi-industry staffing platform. If you want this exported as a downloadable file (HTML/PDF) or require the DB schema and Swagger docs next, tell me which one to generate.</p>
+    </footer>
+  </div>
+</body>
+</html>

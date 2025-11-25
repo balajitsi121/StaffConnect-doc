@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>StaffConnect — Full Quote Hours</title>
+  <style>
+    body{font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:#f8fafc;color:#0f172a;margin:0;padding:24px}
+    .container{max-width:980px;margin:0 auto;background:#fff;padding:28px;border-radius:10px;box-shadow:0 6px 24px rgba(15,23,42,0.06)}
+    h1{font-size:22px;margin:0 0 8px}
+    h2{font-size:18px;margin-top:18px}
+    p{margin:8px 0}
+    table{width:100%;border-collapse:collapse;margin-top:12px}
+    th,td{padding:10px;border:1px solid #e6edf3;text-align:left;vertical-align:top}
+    th{background:#f1f5f9}
+    .subtable{width:100%;border-collapse:collapse;margin-top:6px}
+    .note{font-size:13px;color:#475569}
+    footer{margin-top:18px;font-size:13px;color:#475569}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>StaffConnect — Full Quote Hours (Detailed)</h1>
+    <p>This document contains the complete quoted hours for all components of the StaffConnect project, broken down by modules and subtasks.</p>
+
+    <h2>⭐ 1. Backend API (Laravel)</h2>
+    <p><strong>Estimated Hours:</strong> <strong>180 – 230 hours</strong></p>
+    <table>
+      <thead>
+        <tr><th>Module</th><th>Hours</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Project setup, auth, roles</td><td>15–20</td></tr>
+        <tr><td>Industry, roles, skills system</td><td>10–15</td></tr>
+        <tr><td>Business & worker registration</td><td>12–16</td></tr>
+        <tr><td>Document upload + verification logic</td><td>15–20</td></tr>
+        <tr><td>Job posting + radius search (Haversine)</td><td>20–25</td></tr>
+        <tr><td>Applications system</td><td>12–16</td></tr>
+        <tr><td>Timesheets module</td><td>15–20</td></tr>
+        <tr><td>Payments (Stripe) + platform fee logic</td><td>25–35</td></tr>
+        <tr><td>Notifications (email, push, SMS)</td><td>18–25</td></tr>
+        <tr><td>Ratings + reviews</td><td>10–12</td></tr>
+        <tr><td>Admin APIs (users, jobs, payouts, settings)</td><td>20–30</td></tr>
+        <tr><td>Reports (earnings, payouts, job metrics)</td><td>10–15</td></tr>
+        <tr><td>Testing, optimization, deployment</td><td>15–20</td></tr>
+      </tbody>
+      <tfoot>
+        <tr><th>Total Backend API</th><th>180–230 hours</th></tr>
+      </tfoot>
+    </table>
+
+    <h2>⭐ 2. Admin Panel (Laravel – Blade or Inertia)</h2>
+    <p><strong>Estimated Hours:</strong> <strong>90 – 120 hours</strong></p>
+    <table>
+      <thead>
+        <tr><th>Module</th><th>Hours</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Admin dashboard UI</td><td>10–12</td></tr>
+        <tr><td>Manage Workers (approve, reject, documents)</td><td>15–20</td></tr>
+        <tr><td>Manage Businesses</td><td>12–16</td></tr>
+        <tr><td>Job monitoring (open, matched, fulfilled)</td><td>10–14</td></tr>
+        <tr><td>Timesheet audits</td><td>8–12</td></tr>
+        <tr><td>Payout management</td><td>10–15</td></tr>
+        <tr><td>Industry + skill configuration</td><td>8–12</td></tr>
+        <tr><td>Reports & analytics</td><td>12–15</td></tr>
+        <tr><td>Admin settings (fees, payout settings)</td><td>6–10</td></tr>
+        <tr><td>Testing + deployment</td><td>8–10</td></tr>
+      </tbody>
+      <tfoot>
+        <tr><th>Total Admin Panel</th><th>90–120 hours</th></tr>
+      </tfoot>
+    </table>
+
+    <h2>⭐ 3. Website – React (Next.js recommended)</h2>
+    <p><strong>Estimated Hours:</strong> <strong>150 – 180 hours</strong></p>
+    <table>
+      <thead>
+        <tr><th>Module</th><th>Hours</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Role-based login & registration</td><td>12–16</td></tr>
+        <tr><td>Worker dashboard</td><td>15–20</td></tr>
+        <tr><td>Business dashboard</td><td>15–20</td></tr>
+        <tr><td>Profile completion flows</td><td>12–15</td></tr>
+        <tr><td>Job listing + filters + radius UI</td><td>20–25</td></tr>
+        <tr><td>Job details + apply</td><td>10–12</td></tr>
+        <tr><td>Business job creation UI</td><td>10–14</td></tr>
+        <tr><td>Applications system</td><td>10–14</td></tr>
+        <tr><td>Timesheet submission + approval views</td><td>10–12</td></tr>
+        <tr><td>Earnings & payouts UI</td><td>10–14</td></tr>
+        <tr><td>Notifications UI</td><td>8–10</td></tr>
+        <tr><td>Settings, profile, password reset</td><td>8–10</td></tr>
+        <tr><td>Testing + responsive adjustments</td><td>10–15</td></tr>
+      </tbody>
+      <tfoot>
+        <tr><th>Total Website (React)</th><th>150–180 hours</th></tr>
+      </tfoot>
+    </table>
+
+    <h2>⭐ 4. Mobile Apps (React Native – iOS & Android)</h2>
+    <p><strong>Estimated Hours:</strong> <strong>220 – 260 hours</strong></p>
+
+    <h3>Worker App Features</h3>
+    <table class="subtable">
+      <thead><tr><th>Module</th><th>Hours</th></tr></thead>
+      <tbody>
+        <tr><td>Worker signup + onboarding</td><td>12–15</td></tr>
+        <tr><td>Worker dashboard</td><td>15–20</td></tr>
+        <tr><td>Job feed + radius search</td><td>20–25</td></tr>
+        <tr><td>Job details + apply</td><td>10–12</td></tr>
+        <tr><td>Timesheet submission</td><td>12–15</td></tr>
+        <tr><td>Earnings & payout view</td><td>10–12</td></tr>
+        <tr><td>Notifications (FCM + Notifee)</td><td>15–20</td></tr>
+        <tr><td>Document upload</td><td>10–15</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Business App Features</h3>
+    <table class="subtable">
+      <thead><tr><th>Module</th><th>Hours</th></tr></thead>
+      <tbody>
+        <tr><td>Business signup + onboarding</td><td>12–15</td></tr>
+        <tr><td>Post jobs</td><td>15–18</td></tr>
+        <tr><td>Applications list + accept/reject</td><td>12–16</td></tr>
+        <tr><td>Timesheet approval</td><td>12–16</td></tr>
+        <tr><td>Notifications</td><td>10–12</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Shared & Technical</h3>
+    <table class="subtable">
+      <thead><tr><th>Module</th><th>Hours</th></tr></thead>
+      <tbody>
+        <tr><td>Navigation structure</td><td>12–15</td></tr>
+        <tr><td>API integration (all modules)</td><td>25–35</td></tr>
+        <tr><td>Geo permissions + postcode helpers</td><td>8–10</td></tr>
+        <tr><td>Combined testing (iOS + Android)</td><td>20–25</td></tr>
+        <tr><td>App Store + Play Store preparation</td><td>12–15</td></tr>
+      </tbody>
+      <tfoot>
+        <tr><th>Total Mobile Apps (iOS + Android)</th><th>220–260 hours</th></tr>
+      </tfoot>
+    </table>
+
+    <h2>⭐ TOTAL PROJECT HOURS (All Systems)</h2>
+    <table>
+      <thead><tr><th>Component</th><th>Hours</th></tr></thead>
+      <tbody>
+        <tr><td>Backend API (Laravel)</td><td>180–230</td></tr>
+        <tr><td>Admin Panel (Laravel)</td><td>90–120</td></tr>
+        <tr><td>Website (React)</td><td>150–180</td></tr>
+        <tr><td>Mobile Apps (React Native)</td><td>220–260</td></tr>
+      </tbody>
+      <tfoot>
+        <tr><th>Grand Total (Full System)</th><th>640–790 hours</th></tr>
+      </tfoot>
+    </table>
+
+    <p class="note">Notes: Estimates assume production-grade quality, testing, and basic documentation. Optional add-ons (real-time chat, offline mode, multi-language, advanced analytics) would be quoted separately.</p>
+
+    <footer>
+      <p>Prepared for: <strong>StaffConnect</strong>. If you'd like this exported as downloadable HTML or PDF, or converted to a cost estimate (provide hourly rate), tell me which format you prefer.</p>
+    </footer>
+  </div>
+</body>
+</html>
