@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>StaffConnect — React Website Quote (Hotel + Staff)</title>
+  <style>
+    body{font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:#f8fafc;color:#0f172a;margin:0;padding:24px}
+    .container{max-width:1100px;margin:0 auto;background:#fff;padding:28px;border-radius:10px;box-shadow:0 6px 24px rgba(15,23,42,0.06)}
+    h1{font-size:22px;margin:0 0 8px}
+    h2{font-size:18px;margin-top:18px}
+    p{margin:8px 0}
+    table{width:100%;border-collapse:collapse;margin-top:12px}
+    th,td{padding:10px;border:1px solid #e6edf3;text-align:left;vertical-align:top}
+    th{background:#f1f5f9}
+    .totals{font-weight:700;background:#f8fafc}
+    .note{font-size:13px;color:#475569}
+    footer{margin-top:18px;font-size:13px;color:#475569}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>StaffConnect — React Website Quote (Hotel + Staff)</h1>
+    <p><strong>Scope:</strong> React web application (React (CRA/Vite recommended)) implementing both <em>Hotel (Business)</em> and <em>Staff (Worker)</em> workflows as provided. This quote covers only the <strong>UI implementation</strong> and <strong>functional development</strong> for the React website, excluding UX design work (handled by a separate team).</p>
+
+    <h2>Summary (Hours)</h2>
+    <table>
+      <thead>
+        <tr><th>Category</th><th>Functional Dev (hrs)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Project Setup (React, folder structure, CI config)</strong><br/><span style='font-size:13px;color:#475569'>Initialize React project, configure folder structure, environment variables, reusable components, CI pipeline setup.</span></td><td>6–8</td></tr>
+        <tr><td><strong>Authentication & Onboarding (Hotel + Staff)</strong><br/><span style='font-size:13px;color:#475569'>Implement login, signup, password reset, protected routes, onboarding flows for hotel and staff users.</span></td><td>12–16</td></tr>
+        <tr><td><strong>Dashboard (Hotel + Staff)</strong><br/><span style='font-size:13px;color:#475569'>Build dashboards showing metrics like jobs, applications, timesheets, ratings, and quick navigation shortcuts.</span></td><td>18–24</td></tr>
+        <tr><td><strong>Job Posting & Management (Hotel)</strong><br/><span style='font-size:13px;color:#475569'>Create job posting UI, edit jobs, copy & repost jobs, list open and fulfilled jobs.</span></td><td>18–24</td></tr>
+        <tr><td><strong>Applications Flow (Pending/Accepted/Rejected/All)</strong><br/><span style='font-size:13px;color:#475569'>Staff can apply for jobs; hotel views applications with accept/reject actions and detailed candidate views.</span></td><td>12–16</td></tr>
+        <tr><td><strong>Timesheets (Submit, Approve, Adjust, History)</strong><br/><span style='font-size:13px;color:#475569'>Develop timesheet submission system, employer approval, adjustments, and history tracking.</span></td><td>14–18</td></tr>
+        <tr><td><strong>Jobs Feed & Radius Filtering (Staff)</strong><br/><span style='font-size:13px;color:#475569'>Build job listing with role-based and location radius filtering using postcode validation.</span></td><td>14–18</td></tr>
+        <tr><td><strong>Profiles & Document Uploads (Worker & Business)</strong><br/><span style='font-size:13px;color:#475569'>CRUD for staff and business profiles, upload Right-to-Work, certificates, verification documents.</span></td><td>12–16</td></tr>
+        <tr><td><strong>Favourites, Repost, Copy Job</strong><br/><span style='font-size:13px;color:#475569'>Enable hotel to favourite applicants and staff to favourite hotels; copy & repost job feature.</span></td><td>6–8</td></tr>
+        <tr><td><strong>Reports & Export (Hotel)</strong><br/><span style='font-size:13px;color:#475569'>Build filters and generate job, application, and timesheet reports with PDF/CSV export.</span></td><td>10–14</td></tr>
+        <tr><td><strong>Notifications UI & Settings (Email/SMS/Push opt-in)</strong><br/><span style='font-size:13px;color:#475569'>Notification list, archive, settings page for choosing notification channels.</span></td><td>10–14</td></tr>
+        <tr><td><strong>Ratings & Reviews UI</strong><br/><span style='font-size:13px;color:#475569'>UI for rating workers and hotels post-shift and viewing aggregated ratings.</span></td><td>6–8</td></tr>
+        <tr><td><strong>Search, Filters, Pagination & Maps</strong><br/><span style='font-size:13px;color:#475569'>Advanced job search, filters, pagination, and integrating maps for job location view.</span></td><td>10–14</td></tr>
+        <tr><td><strong>Settings, Account, Billing View</strong><br/><span style='font-size:13px;color:#475569'>Manage billing info, profile settings, notification preferences, and account details.</span></td><td>8–10</td></tr>
+        <tr><td><strong>Responsive, Accessibility, Cross-browser QA</strong><br/><span style='font-size:13px;color:#475569'>Test and refine UI for desktop/mobile, accessibility, and cross-browser compatibility.</span></td><td>10–12</td></tr>
+        <tr><td><strong>Integration, Testing & Deployment</strong><br/><span style='font-size:13px;color:#475569'>Integrate all API endpoints, perform functional tests, optimize performance, and deploy final build.</span></td><td>12–20</td></tr>
+      </tbody>
+      <tfoot>
+        <tr class="totals"><td>Total Hours</td><td>174–228</td></tr>
+      </tfoot>
+    </table>
+
+    <h2>Assumptions</h2>
+    <ul>
+      <li>Backend API endpoints for all flows are available and documented (or will be delivered 1–2 sprints ahead of frontend).</li>
+      <li>Postcode validation uses an external API (Postcodes.io or Google) — API keys and accounts will be provided by client or procured separately.</li>
+      <li>Authentication uses token-based scheme (Laravel Sanctum) and is already implemented server-side.</li>
+      <li>Payments are handled by backend (Stripe) — frontend only shows payment/billing views.</li>
+      <li>Notifications channels available: push (web push), email, SMS. Integrations (Twilio/SendGrid) are backend responsibilities; frontend implements settings & token registration UI.</li>
+      <li>50% partial payout feature is NOT included as per client decision.</li>
+    </ul>
+
+    <h2>Exclusions (Not Included)</h2>
+    <ul>
+      <li>Real-time chat between Hotel and Staff (can be quoted separately).</li>
+      <li>Full Admin Panel (separate project scope).</li>
+      <li>Deep offline-first mobile behavior (basic caching for web only).</li>
+      <li>Complex custom analytics beyond CSV/PDF export.</li>
+    </ul>
+
+    <h2>Suggested Timeline</h2>
+    <p>Assuming a single dedicated React team (2 developers + 1 UI engineer + 1 QA), sprints of 2 weeks:</p>
+    <ul>
+      <li>Design & wireframes: 2–3 sprints</li>
+      <li>Core features (auth, dashboard, jobs feed, posting): 3–4 sprints</li>
+      <li>Timesheets, applications, reports, notifications: 2–3 sprints</li>
+      <li>Polish, testing, deployment: 1–2 sprints</li>
+    </ul>
+    <p><em>Estimated calendar duration:</em> ~10–16 weeks (depending on team size and parallel work).</p>
+
+    <h2>Deliverables</h2>
+    <ul>
+      <li>Full React codebase for Website (Hotel + Staff features)</li>
+      <li>Responsive UI for desktop & mobile</li>
+      <li>Design assets & component library (JobCard, Filters, Forms)</li>
+      <li>Integration with backend endpoints (API client + docs)</li>
+      <li>Test cases & QA report</li>
+      <li>Deployment instructions & CI/CD pipeline guidance</li>
+    </ul>
+
+    <h2>Next Steps</h2>
+    <ol>
+      <li>Confirm acceptance of estimate and assumptions.</li>
+      <li>Provide API documentation (or allow me to generate API stubs from backend).</li>
+      <li>Provide design assets / branding (logo, color palette, fonts) if available.</li>
+      <li>Decide team size or provide hourly rate for cost conversion.</li>
+    </ol>
+
+    <footer>
+      <p class="note">Prepared for: <strong>StaffConnect</strong>. If you want this converted to a PDF or need the same breakdown for the React Native app or Laravel backend, tell me and I’ll generate it.</p>
+    </footer>
+  </div>
+</body>
+</html>

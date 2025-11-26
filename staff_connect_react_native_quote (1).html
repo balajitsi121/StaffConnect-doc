@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>StaffConnect — React Native App Quote (iOS + Android)</title>
+  <style>
+    body{font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:#f8fafc;color:#0f172a;margin:0;padding:24px}
+    .container{max-width:1100px;margin:0 auto;background:#fff;padding:28px;border-radius:10px;box-shadow:0 6px 24px rgba(15,23,42,0.06)}
+    h1{font-size:22px;margin-bottom:8px}
+    h2{font-size:18px;margin-top:18px}
+    table{width:100%;border-collapse:collapse;margin-top:12px}
+    th,td{padding:10px;border:1px solid #e6edf3;text-align:left}
+    th{background:#f1f5f9}
+    .totals{font-weight:700;background:#f8fafc}
+    footer{margin-top:18px;font-size:13px;color:#475569}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>StaffConnect — React Native App Quote (iOS + Android)</h1>
+    <p><strong>Scope:</strong> React Native mobile application implementing both <em>Hotel (Business)</em> and <em>Staff (Worker)</em> workflows. This quote includes <strong>UI implementation</strong>, <strong>functional development</strong>, <strong>mobile navigation</strong>, <strong>API integration</strong>, <strong>push notifications</strong>, <strong>testing</strong>, and <strong>app store deployment</strong>. UX design is excluded since it is handled by a separate team.</p>
+
+    <h2>Summary (Hours)</h2>
+    <table>
+      <thead>
+        <tr><th>Category</th><th>Functional Dev (hrs)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Project Setup (RN CLI/Expo, folder structure, env config)</strong><br/><span style='font-size:13px;color:#475569'>Initialize React Native project, set up folder structure, project configs, environment variables, linting, and base architecture.</span></td><td>8–12</td></tr>
+        <tr><td><strong>Authentication & Onboarding (Hotel + Staff)</strong><br/><span style='font-size:13px;color:#475569'>Implement login, signup, token storage, onboarding flow, and mandatory profile completion checks before job access.</span></td><td>16–22</td></tr>
+        <tr><td><strong>Navigation Setup (Stack, Tab, Drawer, Deep Links)</strong><br/><span style='font-size:13px;color:#475569'>Configure app navigation structure with guarded routes, bottom tabs, nested stacks, and deep linking support.</span></td><td>14–18</td></tr>
+        <tr><td><strong>Dashboard (Hotel + Staff)</strong><br/><span style='font-size:13px;color:#475569'>Build dashboards for both user types showing metrics such as earnings, applications, open jobs, and pending actions.</span></td><td>18–24</td></tr>
+        <tr><td><strong>Job Posting & Management (Hotel)</strong><br/><span style='font-size:13px;color:#475569'>Hotel can post jobs, edit jobs, view open/fulfilled jobs, manage assigned staff, and repost jobs.</span></td><td>20–26</td></tr>
+        <tr><td><strong>Job Feed, Radius Filtering, Preferences (Staff)</strong><br/><span style='font-size:13px;color:#475569'>Display available jobs filtered by staff’s preferred roles, radius distance, and matching preferences.</span></td><td>18–24</td></tr>
+        <tr><td><strong>Applications Flow (Pending/Accepted/Rejected/All)</strong><br/><span style='font-size:13px;color:#475569'>Apply for jobs, view all application statuses, access detailed views, and manage favourites and job actions.</span></td><td>14–20</td></tr>
+        <tr><td><strong>Timesheets (Submit, Adjust, Resubmit)</strong><br/><span style='font-size:13px;color:#475569'>Enable staff to submit timesheets, handle employer adjustments, resubmission flow, and approval visibility.</span></td><td>18–24</td></tr>
+        <tr><td><strong>Profiles & Document Upload (Camera + Gallery + S3)</strong><br/><span style='font-size:13px;color:#475569'>Support uploading Right-to-Work documents, certificates, and images using camera/gallery with S3 upload integration.</span></td><td>18–24</td></tr>
+        <tr><td><strong>Favourites (Hotel + Staff)</strong><br/><span style='font-size:13px;color:#475569'>Allow staff to favourite hotels and hotels to favourite workers for quick access during hiring.</span></td><td>8–12</td></tr>
+        <tr><td><strong>Reports View (Hotel)</strong><br/><span style='font-size:13px;color:#475569'>Hotel can generate and view financial reports, job reports, and timesheet-related summaries.</span></td><td>10–14</td></tr>
+        <tr><td><strong>Push Notifications (FCM, Notifee, Device Tokens)</strong><br/><span style='font-size:13px;color:#475569'>Implement background/foreground push handling, device token registration, notification UI, and permission flows.</span></td><td>20–30</td></tr>
+        <tr><td><strong>Ratings & Reviews</strong><br/><span style='font-size:13px;color:#475569'>Enable staff and hotels to rate each other after completed jobs and display average ratings.</span></td><td>8–12</td></tr>
+        <tr><td><strong>Settings, Account, Notification Preferences</strong><br/><span style='font-size:13px;color:#475569'>Allow users to manage profile settings, password, notification preferences, and communication channels.</span></td><td>10–14</td></tr>
+        <tr><td><strong>Offline Handling (Basic Caching)</strong><br/><span style='font-size:13px;color:#475569'>Implement limited offline caching for jobs list and profile data for better performance.</span></td><td>8–12</td></tr>
+        <tr><td><strong>Testing – Android + iOS (Device + Simulator)</strong><br/><span style='font-size:13px;color:#475569'>Perform full QA cycle across Android and iOS using real devices & emulators.</span></td><td>20–26</td></tr>
+        <tr><td><strong>App Store & Play Store Deployment</strong><br/><span style='font-size:13px;color:#475569'>Prepare release builds, certificates, signing, and submission for both app stores.</span></td><td>12–18</td></tr>
+      </tbody>
+      <tfoot>
+        <tr class="totals"><td>Total Hours</td><td>240–322</td></tr>
+      </tfoot>
+    </table>
+
+    <h2>Category Descriptions</h2>
+    <ul>
+      <li><strong>Project Setup:</strong> Initialize React Native project, configure folder structure, environment variables, and base architecture.</li>
+      <li><strong>Authentication & Onboarding:</strong> Implement login, signup, OTP/email verification, and profile completion checks.</li>
+      <li><strong>Navigation Setup:</strong> Configure stack, tab, drawer navigators, deep linking, and route guards.</li>
+      <li><strong>Dashboard:</strong> Build staff & hotel dashboards showing metrics, counts, and shortcuts.</li>
+      <li><strong>Job Posting & Management:</strong> Hotel creates jobs, edits jobs, reposts jobs, and views job status.</li>
+      <li><strong>Job Feed & Radius Filtering:</strong> Staff sees available jobs filtered by location, radius, and preferences.</li>
+      <li><strong>Applications Flow:</strong> Apply for jobs, check pending/accepted/rejected applications.</li>
+      <li><strong>Timesheets:</strong> Staff submits timesheets, employer adjusts or rejects, resubmission flow.</li>
+      <li><strong>Profiles & Document Upload:</strong> Staff uploads Right-to-Work, certificates, photos via camera/gallery.</li>
+      <li><strong>Favourites:</strong> Staff favourites hotels; hotels favourite applicants.</li>
+      <li><strong>Reports:</strong> Hotel views earnings, job reports with filters.</li>
+      <li><strong>Push Notifications:</strong> Implement FCM, Notifee, channels, preferences, and device token registration.</li>
+      <li><strong>Ratings & Reviews:</strong> Staff and hotel rating system post-shift.</li>
+      <li><strong>Settings & Notification Preferences:</strong> User controls email/SMS/push notification preferences.</li>
+      <li><strong>Offline Handling:</strong> Basic caching for job lists & profile data.</li>
+      <li><strong>Testing:</strong> QA across iOS & Android devices and simulators.</li>
+      <li><strong>App Store Deployment:</strong> Build signing, submission process for Apple App Store & Google Play Store.</li>
+    </ul>
+
+    <h2>Assumptions</h2>
+    <ul>
+      <li>Backend API will be available and documented before integration begins.</li>
+      <li>React Native (bare workflow or Expo with custom config) will be used.</li>
+      <li>Push notifications handled via Firebase (FCM) + Notifee.</li>
+      <li>Document uploads stored on S3 via pre-signed URLs.</li>
+      <li>Geolocation + radius filtering relies on backend Haversine logic.</li>
+      <li>Weekly payout logic handled by backend; app displays status only.</li>
+      <li>SMS may later use WhatsApp API if chosen by client.</li>
+    </ul>
+
+    <h2>Exclusions</h2>
+    <ul>
+      <li>Real-time chat/messaging (can be quoted separately).</li>
+      <li>Deep offline mode with queueing (basic caching only included).</li>
+      <li>Complex animations or custom maps beyond standard RN Maps.</li>
+      <li>Admin panel functionality (web only).</li>
+    </ul>
+
+    <h2>Suggested Timeline</h2>
+    <ul>
+      <li>Setup + navigation: 1–2 sprints</li>
+      <li>Core features: 4–6 sprints</li>
+      <li>Notifications + upload + radius logic: 2–3 sprints</li>
+      <li>Testing + deployment: 2 sprints</li>
+    </ul>
+    <p><em>Estimated calendar duration:</em> ~12–18 weeks based on team size.</p>
+
+    <h2>Deliverables</h2>
+    <ul>
+      <li>Complete React Native app for iOS & Android</li>
+      <li>All screens for Hotel + Staff users</li>
+      <li>Push notification integration</li>
+      <li>Camera + document upload integration</li>
+      <li>Radius-based job listing</li>
+      <li>API client + full integration</li>
+      <li>Store-ready builds (App Store & Play Store)</li>
+    </ul>
+
+    <footer>
+      <p>Prepared for: <strong>StaffConnect</strong>. If you want the cost estimate version or Laravel backend quote, I can generate that next.</p>
+    </footer>
+  </div>
+</body>
+</html>

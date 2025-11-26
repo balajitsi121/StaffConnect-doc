@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>StaffConnect — Laravel Admin Panel & API Development Quote</title>
+<style>
+ body{font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:#f8fafc;color:#0f172a;margin:0;padding:24px}
+ .container{max-width:1150px;margin:0 auto;background:#fff;padding:28px;border-radius:10px;box-shadow:0 6px 24px rgba(15,23,42,0.06)}
+ h1{font-size:24px;margin:0 0 12px}
+ h2{font-size:19px;margin-top:22px}
+ table{width:100%;border-collapse:collapse;margin-top:12px}
+ th,td{padding:10px;border:1px solid #e6edf3;text-align:left;vertical-align:top}
+ th{background:#f1f5f9}
+ .totals{font-weight:700;background:#f8fafc}
+ footer{margin-top:18px;font-size:13px;color:#475569}
+ .desc{font-size:13px;color:#475569}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>StaffConnect — Laravel Admin Panel & API Development Quote</h1>
+<p><strong>Scope:</strong> This document provides hours required for building the <strong>Laravel Admin Panel</strong> & the <strong>Complete Backend API system</strong> supporting Hotel Users, Staff Users, Admin, Timesheets, Payments, Notifications, Job Management, and Reporting.</p>
+
+<h2>1. Laravel Admin Panel — Quote (Hours)</h2>
+<table>
+<thead>
+<tr><th>Module</th><th>Description</th><th>Functional Dev (hrs)</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Project Setup (Admin Panel)</strong></td>
+<td class="desc">Admin panel scaffolding, authentication, roles (Super Admin, Admin), permissions, basic UI theme setup.</td>
+<td>6–8</td>
+</tr>
+<tr>
+<td><strong>Admin Dashboard Overview</strong></td>
+<td class="desc">Metrics for: Total Hotels, Total Staff, Active Jobs, Pending Verifications, Pending Payments, Revenue Graphs, Timesheet Summary.</td>
+<td>12–16</td>
+</tr>
+<tr>
+<td><strong>User Management (Hotel Users)</strong></td>
+<td class="desc">List hotels, view details, approve/reject accounts, suspend/activate, manage documents, view job postings.</td>
+<td>14–20</td>
+</tr>
+<tr>
+<td><strong>User Management (Staff Users)</strong></td>
+<td class="desc">List staff, document verification (right-to-work, certifications, ID), approve/reject, suspend/activate, history view.</td>
+<td>16–22</td>
+</tr>
+<tr>
+<td><strong>Document Verification System</strong></td>
+<td class="desc">Admin review of uploaded documents, approval workflow, rejection reasons, audit log.</td>
+<td>10–14</td>
+</tr>
+<tr>
+<td><strong>Job Monitoring (All Jobs)</strong></td>
+<td class="desc">View all posted jobs, job statuses, filter by hotel/staff/date, ability to close job manually.</td>
+<td>12–16</td>
+</tr>
+<tr>
+<td><strong>Applications Monitoring</strong></td>
+<td class="desc">View job applications, statuses, assignment summary, intervention options.</td>
+<td>8–12</td>
+</tr>
+<tr>
+<td><strong>Timesheets Management</strong></td>
+<td class="desc">View submitted timesheets, approvals history, detect delays, dispute notes, audit trail.</td>
+<td>10–14</td>
+</tr>
+<tr>
+<td><strong>Payments & Payouts</strong></td>
+<td class="desc">View platform revenue, weekly payouts overview, export payment summaries, connect with Stripe panel.</td>
+<td>12–16</td>
+</tr>
+<tr>
+<td><strong>Dispute Handling</strong></td>
+<td class="desc">Manage staff/hotel disputes for hours, rejections, cancellations; audit logs.</td>
+<td>8–12</td>
+</tr>
+<tr>
+<td><strong>Reports & Platform Analytics</strong></td>
+<td class="desc">Reports for jobs, payouts, staff activity, hotel spending, platform revenue, CSV/PDF export.</td>
+<td>14–18</td>
+</tr>
+<tr>
+<td><strong>Admin Settings</strong></td>
+<td class="desc">Platform fee, payout settings, notification templates, email/SMS providers configuration.</td>
+<td>8–10</td>
+</tr>
+<tr>
+<td><strong>Notification Logs (Admin View)</strong></td>
+<td class="desc">Admin can view all notifications sent (email/SMS/push), searchable logs; no live notifications.</td>
+<td>8–12</td>
+</tr>
+<tr>
+<td><strong>Testing & Deployment</strong></td>
+<td class="desc">Testing, admin UI refinement, performance tuning, deployment steps.</td>
+<td>12–16</td>
+</tr>
+</tbody>
+<tfoot>
+<tr class="totals"><td>Total Admin Panel Hours</td><td></td><td>110–150</td></tr>
+</tfoot>
+</table>
+
+<h2>2. Backend API Development — Quote (Hours)</h2>
+<table>
+<thead>
+<tr><th>API Module</th><th>Description</th><th>Functional Dev (hrs)</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Project Setup (Laravel API)</strong></td>
+<td class="desc">Laravel project setup, base architecture, auth scaffolding, Sanctum tokens, API versioning.</td>
+<td>10–14</td>
+</tr>
+<tr>
+<td><strong>Auth & Roles (Staff, Hotel, Admin)</strong></td>
+<td class="desc">Multi-role support, login, registration endpoints, verification emails, block/suspend, OTP (if needed).</td>
+<td>14–18</td>
+</tr>
+<tr>
+<td><strong>Hotel Module APIs</strong></td>
+<td class="desc">Hotel registration, verification, profile update, job posting, job editing, job repost, job radius logic.</td>
+<td>18–24</td>
+</tr>
+<tr>
+<td><strong>Staff Module APIs</strong></td>
+<td class="desc">Staff registration, full onboarding, document upload, preferences, job applications, timesheets.</td>
+<td>18–24</td>
+</tr>
+<tr>
+<td><strong>Job Management APIs</strong></td>
+<td class="desc">Job listing, radius-based filtering, job details, auto-matching logic.</td>
+<td>18–24</td>
+</tr>
+<tr>
+<td><strong>Applications System APIs</strong></td>
+<td class="desc">Apply, reject, accept, favourites, applicant list, staff-job matching logic.</td>
+<td>14–18</td>
+</tr>
+<tr>
+<td><strong>Timesheet APIs</strong></td>
+<td class="desc">Submit, approve, reject with notes, resubmit, payment eligibility, audit logs.</td>
+<td>16–22</td>
+</tr>
+<tr>
+<td><strong>Payments (Stripe) APIs</strong></td>
+<td class="desc">Stripe Connect onboarding, account verification, payment flows, revenue share, weekly payout scheduling.</td>
+<td>22–28</td>
+</tr>
+<tr>
+<td><strong>Notification APIs (Email, SMS, Push)</strong></td>
+<td class="desc">Push token registration, notification triggers, preference settings, logs.</td>
+<td>18–24</td>
+</tr>
+<tr>
+<td><strong>Ratings & Reviews APIs</strong></td>
+<td class="desc">Ratings after shift, aggregated score logic, rating history.</td>
+<td>10–14</td>
+</tr>
+<tr>
+<td><strong>Admin Management APIs</strong></td>
+<td class="desc">Admin CRUD for hotels, staff, jobs, payouts, disputes, reports.</td>
+<td>16–22</td>
+</tr>
+<tr>
+<td><strong>Reports APIs</strong></td>
+<td class="desc">Reports for jobs, payouts, staff work history, hotel spending, platform revenue.</td>
+<td>12–16</td>
+</tr>
+<tr>
+<td><strong>Optimization, Security, Deployment</strong></td>
+<td class="desc">Rate limiting, API security hardening, logging, staging/production deployment.</td>
+<td>12–20</td>
+</tr>
+</tbody>
+<tfoot>
+<tr class="totals"><td>Total Backend API Hours</td><td></td><td>200–266</td></tr>
+</tfoot>
+</table>
+
+<footer>
+<p>Prepared for: <strong>StaffConnect</strong>. If you want a combined master quote (Web + Mobile + Admin + API), let me know.</p>
+</footer>
+</div>
+</body>
+</html>
